@@ -58,5 +58,28 @@ RSpec.describe "Band Pass Filter Tests" do
       expect(testBandPassFilter.modify_frequencies([70],1000,80)).to eq ([80])
     end
   end
+  
+  context"block4 - multiple values" do
+    it"2 values in array both in range" do
+      expect(testBandPassFilter.modify_frequencies([70,800])).to eq ([70,800])
+    end
+
+    it"2 values in array one above range" do
+      expect(testBandPassFilter.modify_frequencies([70,1100])).to eq ([70,1000])
+    end
+
+    it"2 values in array one above range 1 below range" do
+      expect(testBandPassFilter.modify_frequencies([20,1300])).to eq ([40,1000])
+    end
+
+    it"2 values in array one above range 1 below range, custom upper range" do
+      expect(testBandPassFilter.modify_frequencies([70,1100],900)).to eq ([70,900])
+    end
+    
+    it"error handling test" do
+      expect{testBandPassFilter.modify_frequencies(70,900)}.to raise_error("not an array")
+    end
+
+  end
 
 end

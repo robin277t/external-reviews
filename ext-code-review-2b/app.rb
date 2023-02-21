@@ -2,22 +2,21 @@ class BandPassFilter
 
   def modify_frequencies(frequency_array, upper_limit = 1000, lower_limit = 40)
 
-    if upper_limit != 1000
-      return [upper_limit]
+    if !frequency_array.is_a?(Array)
+      error "not an array"
     end
 
-    if lower_limit != 40
-      return [lower_limit]
+    new_frequency_array = frequency_array.map do |number|
+      if number > upper_limit
+        number = upper_limit
+      elsif number < lower_limit
+        number = lower_limit
+      else 
+        number = number
+      end
     end
 
-    if frequency_array[0] <= 1000 && frequency_array[0] >= 40
-      return frequency_array
-    elsif frequency_array[0] > 1000
-      return [1000]
-    else
-      return [40]
-    end
-
+    return new_frequency_array
 
   end
 
