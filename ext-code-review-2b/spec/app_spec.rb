@@ -76,8 +76,14 @@ RSpec.describe "Band Pass Filter Tests" do
       expect(testBandPassFilter.modify_frequencies([70,1100],900)).to eq ([70,900])
     end
     
-    it"error handling test" do
-      expect{testBandPassFilter.modify_frequencies(70,900)}.to raise_error("not an array")
+    it"error handling 1 test" do
+      expect{testBandPassFilter.modify_frequencies(70,900)}.to raise_error("data error")
+    end
+    it"error handling 2 test" do
+      expect{testBandPassFilter.modify_frequencies([100,200],"x",500)}.to raise_error("data error")
+    end
+    it"error handling 3 test" do
+      expect{testBandPassFilter.modify_frequencies(["yyy", 1002], 1000, 30)}.to raise_error("data error")
     end
 
   end

@@ -2,8 +2,9 @@ class BandPassFilter
 
   def modify_frequencies(frequency_array, upper_limit = 1000, lower_limit = 40)
 
-    if !frequency_array.is_a?(Array)
-      error "not an array"
+    if !frequency_array.is_a?(Array)  || !frequency_array.all? {|i| i.is_a?(Integer) } || !upper_limit.is_a?(Integer) || !lower_limit.is_a?(Integer)
+        raise("data error")
+      # puts "error found"
     end
 
     new_frequency_array = frequency_array.map do |number|
