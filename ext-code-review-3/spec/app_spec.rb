@@ -20,7 +20,7 @@ RSpec.describe"Spell Checker Tests" do
   
   context"2nd test block, 2 word inputs" do
     it"two word string, all correct" do
-      expect(test_spell_checker.highlight_wrong_words("the bear")).to eq("the bear")
+      expect(test_spell_checker.highlight_wrong_words("the  bear")).to eq("the bear")
     end
 
     it"two word string, 1 incorrect" do
