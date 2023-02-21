@@ -41,4 +41,22 @@ RSpec.describe "Band Pass Filter Tests" do
     end
   end
 
+  context"Block 3, single values below minimum" do
+    it"1st value input below default min returns default min" do
+      expect(testBandPassFilter.modify_frequencies([30])).to eq ([40])
+    end
+
+    it"2nd value input below default min returns default min" do
+      expect(testBandPassFilter.modify_frequencies([20])).to eq ([40])
+    end
+    
+    it"1st value input below min that customer has input separate to defualt min" do
+      expect(testBandPassFilter.modify_frequencies([20],1000,30)).to eq ([30])
+    end
+
+    it"2nd value input below min that customer has input separate to defualt min" do
+      expect(testBandPassFilter.modify_frequencies([70],1000,80)).to eq ([80])
+    end
+  end
+
 end

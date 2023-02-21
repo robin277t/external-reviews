@@ -6,10 +6,16 @@ class BandPassFilter
       return [upper_limit]
     end
 
-    if frequency_array[0] < 1000
+    if lower_limit != 40
+      return [lower_limit]
+    end
+
+    if frequency_array[0] <= 1000 && frequency_array[0] >= 40
       return frequency_array
-    else
+    elsif frequency_array[0] > 1000
       return [1000]
+    else
+      return [40]
     end
 
 
