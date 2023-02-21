@@ -26,6 +26,18 @@ RSpec.describe"Spell Checker Tests" do
     it"two word string, 1 incorrect" do
       expect(test_spell_checker.highlight_wrong_words("thhe bear")).to eq("~thhe~ bear")
     end
+
+    it"two word string, 2 incorrect" do
+      expect(test_spell_checker.highlight_wrong_words("thhe beaar")).to eq("~thhe~ ~beaar~")
+    end
+
+    it"three word string, 2 incorrect, 1 caps" do
+      expect(test_spell_checker.highlight_wrong_words("thhe beaar WOoDs")).to eq("~thhe~ ~beaar~ WOoDs")
+    end
+
+    it"three word string, 1 incorrect, 1 correct, 1 incorrect + caps" do
+      expect(test_spell_checker.highlight_wrong_words("thhe bear WOdS")).to eq("~thhe~ bear ~WOdS~")
+    end
   end
 
 end
